@@ -51,3 +51,5 @@ function gvm
   bass source ~/.gvm/scripts/gvm ';' gvm $argv
 end
 gvm use go1.6.2
+
+set PATH ~/.gobin $PATH
