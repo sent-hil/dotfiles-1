@@ -4,4 +4,6 @@
 # (~/.config/fish/fish.config) to store its config file
 
 mkdir -p ~/.config/fish
-ln -s `pwd`/fish.config ~/.config/fish/fish.config
+if [ ! -f ~/.config/fish/fish.config ]; then
+  ln -s `pwd`/fish.config ~/.config/fish/fish.config
+fi
