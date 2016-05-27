@@ -20,7 +20,7 @@ if [ -e "$NVIM_INSTALL_DIR" ]; then
 fi
 
 if [ -e "$INSTALL_DIR" ] && [ -e "$NVIM_INSTALL_DIR" ]; then
-  exit 1
+  exit 0
 fi
 
 # check git command
