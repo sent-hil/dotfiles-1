@@ -12,6 +12,8 @@ brew 'wget'
 brew 'youtube-dl'
 brew 'keybase'
 brew 'tree'
+brew 'tmux'
+brew 'fish'
 
 cask '1password'
 cask 'firefox'
