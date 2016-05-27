@@ -1,5 +1,5 @@
 set -x TERM xterm-256color
-set -xU EDITOR /usr/local/bin/vim
+set -x EDITOR /usr/local/bin/vim
 
 function fish_prompt --description 'Write out the prompt'
   # Just calculate these once, to save a few cycles when displaying the prompt
@@ -12,8 +12,7 @@ function fish_prompt --description 'Write out the prompt'
   end
 
   if not set -q __git_cb
-    set __git_cb ":"(set_color brown)(git branch ^/dev/null | grep \* | sed 's/*
-//')(set_color normal)""
+    set __git_cb ":"(set_color brown)(git branch ^/dev/null | grep \* | sed 's/* //')(set_color normal)""
   end
 
   switch $USER
@@ -27,8 +26,7 @@ function fish_prompt --description 'Write out the prompt'
       end
     end
 
-    printf '%s%s%s%s# ' $__fish_prompt_hostname "$__fish_prompt_cwd"
-(prompt_pwd) "$__fish_prompt_normal" $__git_cb
+    printf '%s%s%s%s# ' $__fish_prompt_hostname "$__fish_prompt_cwd" (prompt_pwd) "$__fish_prompt_normal" $__git_cb
 
     case '*'
 
@@ -36,17 +34,14 @@ function fish_prompt --description 'Write out the prompt'
       set -g __fish_prompt_cwd (set_color $fish_color_cwd)
     end
 
-    printf '%s%s%s%s$ ' $__fish_prompt_hostname "$__fish_prompt_cwd"
-(prompt_pwd) "$__fish_prompt_normal" $__git_cb
+    printf '%s%s%s%s$ ' $__fish_prompt_hostname "$__fish_prompt_cwd" (prompt_pwd) "$__fish_prompt_normal" $__git_cb
   end
 end
 
 function clear
   command "clear"
   printf '\e[3J'
-end]'
-
-alias ls="ls --color=auto"
+end
 
 # .envrc file
 eval (direnv hook fish)
