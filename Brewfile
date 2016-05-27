@@ -11,6 +11,7 @@ brew 'unrar'
 brew 'wget'
 brew 'youtube-dl'
 brew 'keybase'
+brew 'tree'
 
 cask '1password'
 cask 'firefox'
