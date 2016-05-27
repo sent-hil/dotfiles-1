@@ -1,3 +1,12 @@
+.local/share/autojump/*
+.zsh-update
+.bash_history
+tags
+.config/*
+.local/*
 .DS_Store
-*~
-*.swp
+.config/fish/fishd.*
+.vim/.netrwhist
+vendor/*
+.bundle
+.envrc
