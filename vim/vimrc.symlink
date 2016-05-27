@@ -48,8 +48,6 @@ NeoBundle "Raimondi/delimitMate"
 NeoBundle "skwp/greplace.vim"
 NeoBundle "itchyny/lightline.vim"
 NeoBundle "christoomey/vim-tmux-navigator"
-NeoBundle "joshhartigan/vim-reddit"
-NeoBundle "ryanss/vim-hackernews"
 
 call neobundle#end()
 
@@ -119,7 +117,7 @@ set expandtab
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
-set laststatus=2
+set laststatus=0
 set wildmode=longest,list
 set cmdheight=1
 set winheight=10
@@ -145,8 +143,8 @@ set tags=./tags;/
 " ================ Theme ====================
 syntax on
 set background=dark
-" colorscheme solarized
-" let g:solarized_termcolors=256
+colorscheme solarized
+let g:solarized_termcolors=256
 
 " highlight current line
 hi CursorLine cterm=NONE ctermbg=black
@@ -322,6 +320,8 @@ let g:syntastic_mode_map={ 'mode': 'active',
 
 let g:go_bin_path = "/Users/senthil/.gobin"
 let g:go_fmt_command = "goimports"
+let g:go_doc_command = "godoc"
+
 au FileType go nmap <C-]> <Plug>(go-def)
 
 let g:lightline = {
