@@ -48,3 +48,5 @@
     trustExitCode = true
 [commit]
     gpgsign = true
+[diff-so-fancy]
+	markEmptyLines = false
