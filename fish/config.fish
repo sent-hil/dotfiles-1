@@ -52,4 +52,6 @@ function gvm
 end
 gvm use go1.6.2
 
-set PATH ~/.gobin /usr/local/opt/camlistore/ $PATH
+set PATH ~/.gobin $PATH
+
+alias ag="ag --pager 'less -R' $argv"
