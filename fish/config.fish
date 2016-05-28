@@ -52,4 +52,4 @@ function gvm
 end
 gvm use go1.6.2
 
-set PATH ~/.gobin $PATH
+set PATH ~/.gobin /usr/local/opt/camlistore/ $PATH
