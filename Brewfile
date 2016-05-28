@@ -17,6 +17,7 @@ brew 'fish'
 brew 'python'
 brew 'vim'
 brew 'ctags'
+brew 'jq'
 
 cask '1password'
 cask 'firefox'
