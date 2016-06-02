@@ -117,7 +117,7 @@ set expandtab
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
-set laststatus=0
+set laststatus=2
 set wildmode=longest,list
 set cmdheight=1
 set winheight=10
@@ -325,12 +325,19 @@ let g:go_doc_command = "godoc"
 au FileType go nmap <C-]> <Plug>(go-def)
 
 let g:lightline = {
+      \ 'colorscheme': 'solarized',
       \ 'component': {
       \   'readonly': '%{&readonly?"⭤":""}',
-      \ },
-      \ 'separator': { 'left': '⮀', 'right':    '⮂' },
-      \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
       \ }
+      \ }
+
+"let g:lightline = {
+"      \ 'component': {
+"      \   'readonly': '%{&readonly?"⭤":""}',
+"      \ },
+"      \ 'separator': { 'left': '⮀', 'right':    '⮂' },
+"      \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
+"      \ }
 
 " ================ Languages ====================
 " GO
