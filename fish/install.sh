@@ -8,6 +8,4 @@ if [ ! -f ~/.config/fish/config.fish ]; then
   ln -s `pwd`/config.fish ~/.config/fish/config.fish
 fi
 
-if [ ! -d ~/.config/fish/functions ]; then
-  ln -s `pwd`/functions ~/.config/fish/functions
-fi
+ln -s `pwd`/fish_functions/* ~/.config/fish/functions
