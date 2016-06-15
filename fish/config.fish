@@ -53,5 +53,6 @@ end
 gvm use go1.6.2
 
 set PATH ~/.gobin $PATH
+set PATH ~/.gvm/pkgsets/go1.6.2/global/bin $PATH
 
 alias ag="ag --pager 'less -R' $argv"
