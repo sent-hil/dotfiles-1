@@ -1,6 +1,7 @@
 cask_args appdir: '/Applications'
 
 tap 'homebrew/bundle'
+tap 'caskroom/versions'
 
 brew 'ack'
 brew 'ag'
@@ -18,11 +19,12 @@ brew 'python'
 brew 'vim'
 brew 'ctags'
 brew 'jq'
+brew 'diff-so-fancy'
 
 cask '1password'
 cask 'firefox'
 cask 'google-chrome'
-cask 'monosnap'
 cask 'google-drive'
 cask 'spotify'
 cask 'alfred'
+cask 'iterm2-beta'
