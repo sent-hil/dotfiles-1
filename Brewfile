@@ -20,6 +20,8 @@ brew 'vim'
 brew 'ctags'
 brew 'jq'
 brew 'diff-so-fancy'
+brew 'gpg'
+brew 'pow'
 
 cask '1password'
 cask 'firefox'
