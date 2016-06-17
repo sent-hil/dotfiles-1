@@ -43,3 +43,6 @@ if type nvim > /dev/null 2>&1 && ! [ -e "$NVIM_INSTALL_DIR" ]; then
   git clone https://github.com/Shougo/neobundle.vim "$NVIM_INSTALL_DIR"
 fi
 echo "Complete setup NeoBundle!"
+
+rm /usr/local/bin/vi
+ln -s /usr/local/bin/vim /usr/local/bin/vi
