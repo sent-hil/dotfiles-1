@@ -50,3 +50,5 @@
     gpgsign = true
 [diff-so-fancy]
 	markEmptyLines = false
+[url "https://"]
+	insteadOf = git://
