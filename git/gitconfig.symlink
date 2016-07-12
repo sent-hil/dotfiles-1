@@ -1,7 +1,6 @@
 [user]
     name = Senthil
     email = me@sent-hil.com
-    signingkey = CA3F27C2
 [diff]
 [color]
   ui = true
@@ -46,8 +45,6 @@
 [mergetool "sourcetree"]
     cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
     trustExitCode = true
-[commit]
-    gpgsign = true
 [diff-so-fancy]
 	markEmptyLines = false
 [url "https://"]
