@@ -50,6 +50,7 @@ NeoBundle "christoomey/vim-tmux-navigator"
 NeoBundle "altercation/vim-colors-solarized"
 NeoBundle "vim-airline/vim-airline"
 NeoBundle "vim-airline/vim-airline-themes"
+NeoBundle "tpope/vim-rails"
 
 call neobundle#end()
 
@@ -111,7 +112,8 @@ set wildignore+=*/_archive/*
 set wildignore+=*/vagrant/*
 
 " tired of moving too much, see toggle below
-set relativenumber
+set number
+set relativenumber!
 
 set numberwidth=5
 set showtabline=0
@@ -305,12 +307,10 @@ nnoremap <leader>t :CtrlP<cr>
 " buffer search
 nnoremap <leader>p :CtrlPBuffer<cr>
 
-if exists(":Tabularize")
-  nmap <Leader>a= :Tabularize /=<CR>
-  vmap <Leader>a= :Tabularize /=<CR>
-  nmap <Leader>a: :Tabularize /:\zs<CR>
-  vmap <Leader>a: :Tabularize /:\zs<CR>
-endif
+nmap <Leader>a= :Tabularize /=<CR>
+vmap <Leader>a= :Tabularize /=<CR>
+nmap <Leader>a: :Tabularize /:\zs<CR>
+vmap <Leader>a: :Tabularize /:\zs<CR>
 
 inoremap <C-u> <ESC>:m .+1<CR>==gi
 inoremap <C-i> <ESC>:m .-2<CR>==gi
@@ -412,10 +412,12 @@ function! RenameFile()
 endfunction
 map <leader>r :call RenameFile()<cr>
 
-nnoremap <leader>ac :Ack "<C-R><C-W>"map
+nnoremap <leader>ac :Ack "<C-R><C-W>"
 
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 let g:airline_symbols.space = "\ua0"
 let g:airline_powerline_fonts = 1
+
+map <leader>z :!echo %<cr>

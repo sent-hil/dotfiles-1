@@ -52,6 +52,11 @@ function gvm
 end
 gvm use go1.6.2
 
-set PATH ~/.gobin $PATH
+set PATH $PATH ~/.gobin
 
-alias ag="ag --pager 'less -R' $argv"
+alias ag="ag --pager 'more -R' $argv"
+alias gt="git $argv"
+alias gi="git $argv"
+
+set PATH $GEM_HOME/bin $PATH
+rvm > /dev/null
