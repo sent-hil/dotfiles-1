@@ -120,3 +120,5 @@ bind -n M-\ run "tmux select-pane -l"
 
 # Bring back clear screen under tmux prefix
 bind -n C-l send-keys 'C-l'
+
+set -g history-limit 20000

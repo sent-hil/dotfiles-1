@@ -12,7 +12,7 @@
   c  = commit -m
   d  = diff --cached
   i  = init
-  l  = log --stat --color
+  l  = log --stat --color --pretty=full
   r  = reset
   s  = status
   cm = commit --amend

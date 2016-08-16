@@ -7,6 +7,5 @@ tags
 .DS_Store
 .config/fish/fishd.*
 .vim/.netrwhist
-vendor/*
 .bundle
 .envrc
