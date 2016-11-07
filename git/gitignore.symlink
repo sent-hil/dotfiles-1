@@ -9,3 +9,5 @@ tags
 .vim/.netrwhist
 .bundle
 .envrc
+Procfile.dev
+vendor/cache

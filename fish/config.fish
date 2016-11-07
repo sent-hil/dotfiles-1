@@ -52,11 +52,46 @@ function gvm
 end
 gvm use go1.6.2
 
-set PATH $PATH ~/.gobin
+set PATH /usr/local/sbin $PATH ~/.gobin
 
 alias ag="ag --pager 'more -R' $argv"
-alias gt="git $argv"
-alias gi="git $argv"
 
 set PATH $GEM_HOME/bin $PATH
 rvm > /dev/null
+
+alias ga="oldgit add . -p"
+alias gs="oldgit status"
+
+alias gcd="oldgit checkout develop"
+alias gcm="oldgit checkout master"
+alias gcn="oldgit checkout -b $argv"
+
+alias gc="oldgit commit -m $argv"
+alias gca="oldgit commit --amend"
+
+alias gd="oldgit d"
+alias gdh="oldgit dh"
+
+alias gp="oldgit push"
+alias ghf="oldgit hf update"
+alias gpd="oldgit pull --rebase origin develop"
+alias gpm="oldgit pull --rebase origin master"
+
+alias gst="oldgit add .; and oldgit stash"
+alias gsp="oldgit stash pop"
+
+alias gl="oldgit log"
+alias glp="oldgit log -p"
+
+alias oldgit="/usr/local/bin/git"
+
+function git
+  for i in status "add . -p" status "checkout develop" "checkout master" "commit -m" "commit --amend" "hf update" "pull --rebase origin develop" "pull -- rebase origin master" "log -p" "pull --rebase origin develop" "pull --origin master" "stash pop" "add . -p"
+    if contains $i $argv
+      echo "Use shortcut"
+      return
+    end
+  end
+
+  oldgit $argv
+end

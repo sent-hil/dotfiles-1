@@ -1,6 +1,6 @@
 [user]
-    name = Senthil
-    email = me@sent-hil.com
+	name = Senthil Arivudainambi
+	email = senthil@walkerandcobrands.com
 [diff]
 [color]
   ui = true
@@ -19,6 +19,7 @@
   ch = checkout
   dh = diff HEAD
   fa = fetch --all
+	please = push --force-with-lease
 [merge]
     tool = diffmerge
 [github]
@@ -28,7 +29,7 @@
 [core]
     editor = /usr/bin/vim
     pager = diff-so-fancy | less --tabs=1,5 -R
-    excludesfile = /Users/senthil/.gitignore
+	excludesfile = /Users/senthilarivudainambi/.gitignore
     trustctime = false
   preloadindex = true
 [web]
@@ -40,12 +41,14 @@
   autosetupmerge = always
   autosetuprebase = always
 [difftool "sourcetree"]
-    cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-    path =
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
 [mergetool "sourcetree"]
-    cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-    trustExitCode = true
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
 [diff-so-fancy]
 	markEmptyLines = false
 [url "https://"]
 	insteadOf = git://
+[commit]
+	template = /Users/senthilarivudainambi/.stCommitMsg

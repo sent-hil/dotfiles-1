@@ -51,6 +51,8 @@ NeoBundle "altercation/vim-colors-solarized"
 NeoBundle "vim-airline/vim-airline"
 NeoBundle "vim-airline/vim-airline-themes"
 NeoBundle "tpope/vim-rails"
+NeoBundle "skwp/vim-rspec"
+NeoBundle "thoughtbot/vim-rspec"
 
 call neobundle#end()
 
@@ -320,7 +322,7 @@ let g:syntastic_mode_map={ 'mode': 'active',
                      \ 'active_filetypes': [],
                      \ 'passive_filetypes': ['html'] }
 
-let g:go_bin_path = "/Users/senthil/.gobin"
+let g:go_bin_path = "/Users/senthilarivudainambi/.gobin"
 let g:go_fmt_command = "goimports"
 let g:go_doc_command = "godoc"
 
@@ -334,6 +336,9 @@ au BufRead,BufNewFile *.go set textwidth=1000
 autocmd FileType go nnoremap <leader>ac :Ack --go "<C-R><C-W>"
 "autocmd FileType go map .. :w \|! clear && go run %<CR>
 au BufRead,BufNewFile *_test.go map .. :w \|! clear && go test<CR>
+
+" Ruby
+autocmd FileType ruby nnoremap <leader>ac :Ack --ruby "<C-R><C-W>"
 
 " ================ Functions ====================
 function! OpenGoTestAlternate()
@@ -421,3 +426,28 @@ let g:airline_symbols.space = "\ua0"
 let g:airline_powerline_fonts = 1
 
 map <leader>z :!echo %<cr>
+
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
+if $VIM_CRONTAB == "true"
+  set nobackup
+  set nowritebackup
+endif
+
+if exists('+colorcolumn')
+  set colorcolumn=81
+else
+  au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>81v.\+', -1)
+endif
+
+" do/end, other start/begin matching
+runtime macros/matchit.vim
+
+""""" Rails shortcuts
+map ga :A<CR>
+map ge :R<CR>
+map <Leader>a :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
