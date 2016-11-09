@@ -83,6 +83,8 @@ alias gsp="oldgit stash pop"
 alias gl="oldgit log"
 alias glp="oldgit log -p"
 
+alias gco="oldgit checkout $argv"
+
 alias oldgit="/usr/local/bin/git"
 
 function git
@@ -94,4 +96,36 @@ function git
   end
 
   oldgit $argv
+end
+
+function rebuild
+  docker-compose down; and docker-compose up -d --build; and rake db:drop; rake
+db:create; rake db:schema:load; rake db:seed; rake db:test:prepare
+end
+
+function agq
+  ag -Q $argv
+end
+
+alias agr="ag --ruby"
+alias agh="ag --haml"
+alias agj="ag --js"
+
+function testBranchMigrations
+  # store current branch to switch to later
+  set feature_branch (git rev-parse --abbrev-ref HEAD)
+
+  git checkout develop
+
+  # rebuild db from scratch
+  docker-compose down; and docker-compose up -d --build
+  rake db:drop
+  rake db:create
+  rake db:schema:load
+  rake db:seed
+
+  # checkout to old branch
+  git checkout $feature_branch
+
+  rake db:migrate
 end

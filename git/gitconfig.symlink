@@ -12,7 +12,6 @@
   c  = commit -m
   d  = diff --cached
   i  = init
-  l  = log --stat --color --pretty=full
   r  = reset
   s  = status
   cm = commit --amend
@@ -20,6 +19,7 @@
   dh = diff HEAD
   fa = fetch --all
 	please = push --force-with-lease
+	l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 [merge]
     tool = diffmerge
 [github]
@@ -42,7 +42,7 @@
   autosetuprebase = always
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+	path =
 [mergetool "sourcetree"]
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
