@@ -98,9 +98,12 @@ function git
   oldgit $argv
 end
 
-function rebuild
-  docker-compose down; and docker-compose up -d --build; and rake db:drop; rake
-db:create; rake db:schema:load; rake db:seed; rake db:test:prepare
+function rebuild_goatee_dbs
+  docker-compose down; and docker-compose up -d --build
+  rake db:drop
+  rake db:create
+  rake db:schema:load
+  rake db:seed
 end
 
 function agq
@@ -117,12 +120,7 @@ function testBranchMigrations
 
   git checkout develop
 
-  # rebuild db from scratch
-  docker-compose down; and docker-compose up -d --build
-  rake db:drop
-  rake db:create
-  rake db:schema:load
-  rake db:seed
+  rebuild_goatee_dbs
 
   # checkout to old branch
   git checkout $feature_branch
