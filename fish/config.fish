@@ -98,14 +98,6 @@ function git
   oldgit $argv
 end
 
-function rebuild_goatee_dbs
-  docker-compose down; and docker-compose up -d --build
-  rake db:drop
-  rake db:create
-  rake db:schema:load
-  rake db:seed
-end
-
 function agq
   ag -Q $argv
 end
@@ -114,16 +106,39 @@ alias agr="ag --ruby"
 alias agh="ag --haml"
 alias agj="ag --js"
 
-function testBranchMigrations
+# rebuild_goatee_dbs drops current dbs and rebuilds them.
+function rebuild_goatee_dbs
+  docker-compose down; and docker-compose up -d --build
+  rake db:drop
+  rake db:create
+  rake db:schema:load
+  rake db:seed
+end
+
+# testBranchMigrations restores db to state they're in 'develop' and then runs
+# migration on current branch
+function test_branch_migrations
   # store current branch to switch to later
   set feature_branch (git rev-parse --abbrev-ref HEAD)
 
+  # restore to db state in develop
   git checkout develop
-
   rebuild_goatee_dbs
 
-  # checkout to old branch
+  # run branch migrations
   git checkout $feature_branch
-
   rake db:migrate
+end
+
+# restoreDump restores production or staging pg dumps. It assumes the dumps are
+# in path "~/work/dumps"
+#
+# Accepts:
+#   String - "staging" or "prod"
+function restore_dump
+  if contains "prod" $argv
+    rake db:restore['~/work/dumps/prod.dump']
+  else
+    rake db:restore['~/work/dumps/staging.dump']
+  end
 end
