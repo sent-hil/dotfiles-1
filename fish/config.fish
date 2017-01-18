@@ -107,17 +107,18 @@ alias agh="ag --haml"
 alias agj="ag --js"
 
 # rebuild_goatee_dbs drops current dbs and rebuilds them.
-function rebuild_goatee_dbs
+function goatee_rebuild_dbs
   docker-compose down; and docker-compose up -d --build
   rake db:drop
   rake db:create
   rake db:schema:load
   rake db:seed
+  rake db:test:prepare
 end
 
 # testBranchMigrations restores db to state they're in 'develop' and then runs
 # migration on current branch
-function test_branch_migrations
+function goatee_test_branch_migrations
   # store current branch to switch to later
   set feature_branch (git rev-parse --abbrev-ref HEAD)
 
@@ -135,10 +136,24 @@ end
 #
 # Accepts:
 #   String - "staging" or "prod"
-function restore_dump
+function goatee_restore_dump
   if contains "prod" $argv
     rake db:restore['~/work/dumps/prod.dump']
   else
     rake db:restore['~/work/dumps/staging.dump']
   end
+end
+
+function goatee_switch_and_update_develop
+  git stash
+  git checkout develop
+  git hf update
+end
+
+function goatee_run_foreman
+  cp ~/work/Procfile.dev ~/work/goatee/
+  foreman start -f Procfile.dev &
+  sleep 2
+  git checkout Procfile.dev
+  fg
 end
