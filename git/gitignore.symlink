@@ -12,3 +12,4 @@ tags
 Procfile.dev
 vendor/cache
 Tmuxfile
+vendor/*
