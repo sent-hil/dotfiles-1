@@ -106,7 +106,7 @@ alias agr="ag --ruby"
 alias agh="ag --haml"
 alias agj="ag --js"
 
-# rebuild_goatee_dbs drops current dbs and rebuilds them.
+# goatee_rebuild_dbs drops current dbs and rebuilds them.
 function goatee_rebuild_dbs
   docker-compose down; and docker-compose up -d --build
   rake db:drop
@@ -116,23 +116,23 @@ function goatee_rebuild_dbs
   rake db:test:prepare
 end
 
-# testBranchMigrations restores db to state they're in 'develop' and then runs
-# migration on current branch
+# goatee_test_branch_migrations restores db to state they're in 'develop' and
+# then runs migration from current branch.
 function goatee_test_branch_migrations
   # store current branch to switch to later
   set feature_branch (git rev-parse --abbrev-ref HEAD)
 
   # restore to db state in develop
   git checkout develop
-  rebuild_goatee_dbs
+  goatee_rebuild_dbs
 
   # run branch migrations
   git checkout $feature_branch
   rake db:migrate
 end
 
-# restoreDump restores production or staging pg dumps. It assumes the dumps are
-# in path "~/work/dumps"
+# goatee_restore_dump restores 'prod' or 'staging' pg dumps. It assumes the
+# dumps are in path "~/work/dumps" and have either the name 'prod' or 'staging'.
 #
 # Accepts:
 #   String - "staging" or "prod"
@@ -144,14 +144,20 @@ function goatee_restore_dump
   end
 end
 
+# goatee_switch_and_update_develop checkouts to develop and updates from origin.
 function goatee_switch_and_update_develop
   git stash
   git checkout develop
   git hf update
 end
 
+# goatee_run_foreman cp Procfile.dev from ~/work/Procfile to current dir and
+# runs foreman with that file.
+#
+# This is required since the Procfile.dev in goatee repo uses different settings
+# than local (mainly running rails s manually vs powder.)
 function goatee_run_foreman
-  cp ~/work/Procfile.dev ~/work/goatee/
+  cp ~/work/Procfile.dev .
   foreman start -f Procfile.dev &
   sleep 2
   git checkout Procfile.dev
