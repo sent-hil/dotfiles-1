@@ -116,9 +116,12 @@ function goatee_rebuild_dbs
   rake db:test:prepare
 end
 
-# goatee_test_branch_migrations restores db to state they're in 'develop' and
+# goatee_rerun_branch_migrations restores db to state they're in 'develop' and
 # then runs migration from current branch.
-function goatee_test_branch_migrations
+#
+# This is mainly to test the migrations in the branch are still compatible with
+# migrations in develop.
+function goatee_rerun_branch_migrations
   # store current branch to switch to later
   set feature_branch (git rev-parse --abbrev-ref HEAD)
 
