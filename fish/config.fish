@@ -50,7 +50,7 @@ eval (direnv hook fish)
 function gvm
   bass source ~/.gvm/scripts/gvm ';' gvm $argv
 end
-gvm use go1.6.2
+gvm use go1.7.3
 
 set PATH /usr/local/sbin $PATH ~/.gobin
 
