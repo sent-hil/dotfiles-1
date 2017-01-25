@@ -53,6 +53,7 @@ NeoBundle "vim-airline/vim-airline-themes"
 NeoBundle "tpope/vim-rails"
 NeoBundle "skwp/vim-rspec"
 NeoBundle "thoughtbot/vim-rspec"
+NeoBundle "jgdavey/vim-blockle"
 
 call neobundle#end()
 
