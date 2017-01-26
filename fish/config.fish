@@ -106,8 +106,8 @@ alias agr="ag --ruby"
 alias agh="ag --haml"
 alias agj="ag --js"
 
-# goatee_rebuild_dbs drops current dbs and rebuilds them.
-function goatee_rebuild_dbs
+# drops current dbs and rebuilds them.
+function g_rebuild_dbs
   docker-compose down; and docker-compose up -d --build
   rake db:drop
   rake db:create
@@ -116,18 +116,18 @@ function goatee_rebuild_dbs
   rake db:test:prepare
 end
 
-# goatee_rerun_branch_migrations restores db to state they're in 'develop' and
-# then runs migration from current branch.
+# restores db to state they're in 'develop' and then runs migration from current
+# branch.
 #
 # This is mainly to test the migrations in the branch are still compatible with
 # migrations in develop.
-function goatee_rerun_branch_migrations
+function g_test_branch_migrations
   # store current branch to switch to later
   set feature_branch (git rev-parse --abbrev-ref HEAD)
 
   # restore to db state in develop
   git checkout develop
-  goatee_rebuild_dbs
+  g_rebuild_dbs
 
   # run branch migrations
   git checkout $feature_branch
@@ -139,7 +139,7 @@ end
 #
 # Accepts:
 #   String - "staging" or "prod"
-function goatee_restore_dump
+function _goatee_restore_dump
   if contains "prod" $argv
     rake db:restore['~/work/dumps/prod.dump']
   else
@@ -147,22 +147,33 @@ function goatee_restore_dump
   end
 end
 
-# goatee_switch_and_update_develop checkouts to develop and updates from origin.
-function goatee_switch_and_update_develop
+function g_restore_staging
+  _goatee_restore_dump "staging"
+end
+
+function g_restore_prod
+  _goatee_restore_dump "prod"
+end
+
+# checkouts to develop and updates from origin.
+function g_switch_and_update_develop
   git stash
   git checkout develop
   git hf update
 end
 
-# goatee_run_foreman cp Procfile.dev from ~/work/Procfile to current dir and
-# runs foreman with that file.
-#
-# This is required since the Procfile.dev in goatee repo uses different settings
-# than local (mainly running rails s manually vs powder.)
-function goatee_run_foreman
-  cp ~/work/Procfile.dev .
+function g_run_foreman
+  cp ~/work/Procfile.dev ~/work/goatee/
   foreman start -f Procfile.dev &
   sleep 2
   git checkout Procfile.dev
   fg
+end
+
+function g_use_staging_db
+  sed -i '' 's/goatee_development/goatee/' config/database.yml
+end
+
+function g_use_development_db
+  git checkout config/database.yml
 end
