@@ -61,6 +61,7 @@ rvm > /dev/null
 
 alias ga="oldgit add . -p"
 alias gs="oldgit status"
+alias gr="oldgit reset"
 
 alias gcd="oldgit checkout develop"
 alias gcm="oldgit checkout master"
@@ -179,10 +180,5 @@ end
 
 function gp
   set remote_branch (git rev-parse --abbrev-ref HEAD)
-  oldgit push origin $remote
-end
-
-function gpf
-  set remote_branch (git rev-parse --abbrev-ref HEAD)
-  oldgit push -f origin $remote
+  oldgit push origin $remote_branch
 end
