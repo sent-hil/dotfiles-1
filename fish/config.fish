@@ -72,7 +72,6 @@ alias gca="oldgit commit --amend"
 alias gd="oldgit d"
 alias gdh="oldgit dh"
 
-alias gp="oldgit push"
 alias ghf="oldgit hf update"
 alias gpd="oldgit pull --rebase origin develop"
 alias gpm="oldgit pull --rebase origin master"
@@ -176,4 +175,14 @@ end
 
 function g_use_development_db
   git checkout config/database.yml
+end
+
+function gp
+  set remote_branch (git rev-parse --abbrev-ref HEAD)
+  oldgit push origin $remote
+end
+
+function gpf
+  set remote_branch (git rev-parse --abbrev-ref HEAD)
+  oldgit push -f origin $remote
 end
