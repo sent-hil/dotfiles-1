@@ -178,7 +178,16 @@ function g_use_development_db
   git checkout config/database.yml
 end
 
-function gp
+function gpush
   set remote_branch (git rev-parse --abbrev-ref HEAD)
   oldgit push origin $remote_branch
+end
+
+function gpull
+  set remote_branch (git rev-parse --abbrev-ref HEAD)
+  oldgit pull --rebase origin $remote_branch
+end
+
+function gdpull
+  oldgit pull --rebase origin develop
 end
