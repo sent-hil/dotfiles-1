@@ -147,22 +147,22 @@ function _goatee_restore_dump
   end
 end
 
-function g_restore_staging
+function g_staging_restore
   _goatee_restore_dump "staging"
 end
 
-function g_restore_prod
+function g_prod_restore
   _goatee_restore_dump "prod"
 end
 
 # checkouts to develop and updates from origin.
-function g_switch_and_update_develop
+function g_develop_switch_and_update
   git stash
   git checkout develop
   git hf update
 end
 
-function g_run_foreman
+function g_foreman_run
   cp ~/work/Procfile.dev ~/work/goatee/
   foreman start -f Procfile.dev &
   sleep 2
