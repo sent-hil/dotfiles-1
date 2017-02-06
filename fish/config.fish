@@ -191,3 +191,8 @@ end
 function gdpull
   oldgit pull --rebase origin develop
 end
+
+function g_push_and_open_pr
+  gpush
+  hub pull-request $argv
+end
