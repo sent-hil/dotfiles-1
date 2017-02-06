@@ -194,5 +194,12 @@ end
 
 function g_push_and_open_pr
   gpush
-  hub pull-request $argv
+  set pr_url (hub pull-request $argv)
+  open $pr_url
+end
+
+function opencron
+  set -x EDITOR nano
+  crontab -e
+  set -e EDITOR
 end
