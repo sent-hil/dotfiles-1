@@ -203,3 +203,11 @@ function opencron
   crontab -e
   set -e EDITOR
 end
+
+function new_blog_post
+  set year_month_date (date +"%F")
+  set post_name (echo $year_month_date(echo "-")(echo $argv)(echo ".md"))
+
+  cd ~/play/sent-hil.github.io/_posts/
+  vi $post_name
+end
