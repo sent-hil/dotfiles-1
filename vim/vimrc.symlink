@@ -54,6 +54,7 @@ NeoBundle "tpope/vim-rails"
 NeoBundle "skwp/vim-rspec"
 NeoBundle "thoughtbot/vim-rspec"
 NeoBundle "jgdavey/vim-blockle"
+NeoBundle "christoomey/vim-titlecase"
 
 call neobundle#end()
 
@@ -451,3 +452,7 @@ map ge :R<CR>
 map <Leader>a :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
+
+nmap <leader>gt <Plug>Titlecase
+vmap <leader>gt <Plug>Titlecase
+nmap <leader>gT <Plug>TitlecaseLine

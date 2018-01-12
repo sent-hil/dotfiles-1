@@ -10,6 +10,4 @@ tags
 .bundle
 .envrc
 Procfile.dev
-vendor/cache
 Tmuxfile
-vendor/*

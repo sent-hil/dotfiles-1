@@ -50,16 +50,18 @@ eval (direnv hook fish)
 function gvm
   bass source ~/.gvm/scripts/gvm ';' gvm $argv
 end
-gvm use go1.7.3 > /dev/null
+gvm use go1.8.3 > /dev/null
 
 set PATH /usr/local/sbin $PATH ~/.gobin
+set PATH $PATH $HOME/.cargo/bin
+set PATH $GEM_HOME/bin $PATH
 
 alias ag="ag --pager 'more -R' $argv"
 
-set PATH $GEM_HOME/bin $PATH
 rvm > /dev/null
 
 alias ga="oldgit add . -p"
+alias gb="oldgit branch"
 alias gs="oldgit status"
 alias gr="oldgit reset"
 
@@ -109,7 +111,6 @@ alias agj="ag --js"
 # drops current dbs and rebuilds them.
 function g_rebuild_dbs
   docker-compose down; and docker-compose up -d --build
-  rake db:drop
   rake db:create
   rake db:schema:load
   rake db:seed
@@ -210,4 +211,30 @@ function new_blog_post
 
   cd ~/play/sent-hil.github.io/_posts/
   vi $post_name
+end
+
+function eb_tail
+  echo 'tail -f /var/log/*.log' | eb ssh
+end
+
+function eb_watch
+  set TERM xterm-256color
+  watch eb health
+end
+
+function eb-status
+  set TERM xterm-256color
+  watch eb status
+end
+
+function switch_eb_app
+  if contains "prod" $argv
+    sed -i '' -e 's/staging/production/' .elasticbeanstalk/config.yml
+  else if contains "play" $argv
+    sed -i '' -e 's/staging/playground/' .elasticbeanstalk/config.yml
+  else if contains "staging" $argv
+    sed -i '' -e 's/production/staging/' .elasticbeanstalk/config.yml
+  else
+    echo "unknown argument, use 'prod' or 'staging'"
+  end
 end
