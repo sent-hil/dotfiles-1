@@ -1,4 +1,4 @@
-set -x TERM xterm-256color
+set -x TERM screen-256color
 set -x EDITOR /usr/local/bin/vim
 
 function fish_prompt --description 'Write out the prompt'
@@ -237,4 +237,17 @@ function switch_eb_app
   else
     echo "unknown argument, use 'prod' or 'staging'"
   end
+end
+
+function switch_eb_app
+  if contains "prod" $argv
+    sed -i '' -e 's/staging/production/' .elasticbeanstalk/config.yml
+  else
+    sed -i '' -e 's/production/staging/' .elasticbeanstalk/config.yml
+  end
+end
+
+function delete_all_but_two_branches
+  g_develop_switch_and_update
+  git branch | grep -v master | grep -v develop | xargs git branch -D
 end
