@@ -54,6 +54,7 @@ gvm use go1.9.2 > /dev/null
 
 set PATH /usr/local/sbin $PATH ~/.gobin
 set PATH $PATH $HOME/.cargo/bin
+set PATH ~/Library/Python/2.7/bin $PATH
 set PATH $GEM_HOME/bin $PATH
 
 alias ag="ag --pager 'more -R' $argv"
